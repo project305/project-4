@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   const { redirectTo } = useRedirect();
   useEffect(() => {
-    redirectTo("/login");
+    redirectTo("/auth/login");
   }, []);
 
   return (

@@ -1,7 +1,13 @@
-import React from 'react'
+import React from "react";
 import styles from "../../styles/Login.module.css";
+import { Button, Form } from "react-bootstrap";
+import useRedirect from "@/custom-hooks/use-redirect";
 
 const Login = () => {
+  const { redirectTo } = useRedirect();
+  const redirection = (page) => {
+    redirectTo(page);
+  };
   return (
     <div className="d-flex flex-column justify-content-center align-items-center">
       <h1 className={styles.title}>Login</h1>
@@ -18,19 +24,32 @@ const Login = () => {
           <Form.Label>Password</Form.Label>
           <Form.Control type="password" placeholder="Password" />
         </Form.Group>
-        <p className="mb-3 text-right text-primary">forgot password?</p>
+        <p
+          className="mb-3 text-right text-primary"
+          onClick={() => redirection("/auth/forgot-password")}
+        >
+          forgot password?
+        </p>
         <div className="d-flex flex-column justify-content-center align-items-center gap-3">
-          <Button variant="primary" type="submit">
+          <Button
+            variant="primary"
+            type="submit"
+          >
             Login
           </Button>
           <p>
             Don't have account?{" "}
-            <span className="text-primary">create account</span>
+            <span
+              className="text-primary"
+              onClick={() => redirection("/auth/sign-up")}
+            >
+              create account
+            </span>
           </p>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
