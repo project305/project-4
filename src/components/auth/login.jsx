@@ -2,12 +2,15 @@ import React from "react";
 import styles from "../../styles/Login.module.css";
 import { Button, Form } from "react-bootstrap";
 import useRedirect from "@/custom-hooks/use-redirect";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const Login = () => {
+  const { data } = useSession();
   const { redirectTo } = useRedirect();
   const redirection = (page) => {
     redirectTo(page);
   };
+  console.log(data);
   return (
     <div className="d-flex flex-column justify-content-center align-items-center">
       <h1 className={styles.title}>Login</h1>
